@@ -9,7 +9,26 @@ function addCount(state = {allCount: 0}, action) {
             return state
     }
 }
+function addTodo(state = [{text: 'Use Redux', completed: true, id: 0}], action) {
+    switch (action.type) {
+        case 'ADD_TODO':
+            return [
+                ...state,
+                {
+                    id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+                    completed: false,
+                    text: action.text
+                }
+            ]
+        case 'COMPLETE_TODO':
+            return state.map((todo) =>
+                todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
+            )
+        default:
+            return state
+    }
+}
 const App = combineReducers({
-    addCount
-})
+    addCount,addTodo
+});
 export default App
