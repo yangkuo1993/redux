@@ -19,3 +19,7 @@ export const CompleteTodo = id => ({
 export const DeleteTodo = id => ({
     type: types.DELETE_TODO, id
 });
+
+export const ClearCompletedTodo = () => ({
+    type: types.CLEAR_COMPLETED_TODO
+});

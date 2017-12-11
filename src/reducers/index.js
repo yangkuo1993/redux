@@ -28,6 +28,10 @@ function addTodo(state = [{text: 'Use Redux', completed: true, id: 0}], action) 
             return state.filter((todo) =>
                 todo.id !== action.id
             )
+        case 'CLEAR_COMPLETED_TODO':
+            return state.filter(todo =>
+                todo.completed === false
+            )
         default:
             return state
     }
