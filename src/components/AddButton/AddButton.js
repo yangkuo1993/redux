@@ -13,8 +13,8 @@ export default class AddButton extends Component{
     }
     handleClick (){
         this.setState({
-            count: ++this.state.count
-        })
+            count: this.state.count + 1
+        });
         this.props.addClick();
     }
     render(){

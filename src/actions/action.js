@@ -14,4 +14,8 @@ export const AddTodo = (text) => {
 
 export const CompleteTodo = id => ({
     type: types.COMPLETE_TODO, id
-})
+});
+
+export const DeleteTodo = id => ({
+    type: types.DELETE_TODO, id
+});

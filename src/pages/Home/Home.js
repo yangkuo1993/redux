@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import AddButton from '../../components/AddButton/AddButton'
 import store from '../../store/store'
-import {AddCount, AddTodo, CompleteTodo} from "../../actions/action";
+import {AddCount, AddTodo, CompleteTodo, DeleteTodo} from "../../actions/action";
 import AddList from '../../components/AddList/AddList'
 import Todo from '../../components/Todo/Todo'
 export default class Home extends Component{
@@ -13,12 +13,16 @@ export default class Home extends Component{
         };
         this.clickAdd = this.clickAdd.bind(this);
         this.saveTodo = this.saveTodo.bind(this);
+        this.deleteHandle = this.deleteHandle.bind(this);
     }
     clickAdd(){
         store.dispatch(AddCount(1));
     }
     saveTodo (text){
         store.dispatch(AddTodo(text));
+    }
+    deleteHandle(id) {
+        console.log(id)
     }
     render(){
         store.subscribe(() =>{
@@ -36,7 +40,7 @@ export default class Home extends Component{
                     <p style={{color: 'red'}}>{this.state.allCount}</p>
                 </div>
                 <AddList save={this.saveTodo}></AddList>
-                {this.state.todoList.map((data) => <Todo title={data.text} key={data.id} checked={data.completed} changeCheck={(e) => store.dispatch(CompleteTodo(data.id))}></Todo>)}
+                {this.state.todoList.map((data) => <Todo delete={(e) => store.dispatch(DeleteTodo(data.id))} title={data.text} key={data.id} checked={data.completed} changeCheck={(e) => store.dispatch(CompleteTodo(data.id))}></Todo>)}
             </div>
         )
     }

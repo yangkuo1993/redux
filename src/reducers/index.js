@@ -24,6 +24,10 @@ function addTodo(state = [{text: 'Use Redux', completed: true, id: 0}], action) 
             return state.map((todo) =>
                 todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
             )
+        case 'DELETE_TODO':
+            return state.filter((todo) =>
+                todo.id !== action.id
+            )
         default:
             return state
     }
