@@ -23,3 +23,19 @@ export const DeleteTodo = id => ({
 export const ClearCompletedTodo = () => ({
     type: types.CLEAR_COMPLETED_TODO
 });
+// 请求
+export const Request = bkdata => ({
+    type: types.REQUEST_POSTS,
+    bkdata
+});
+// 过期
+export const Invalidate = bkdata => ({
+    type: types.INVALIDATE_SUBREDDIT,
+    bkdata
+});
+// 接收请求
+export const Receive = bkdata => ({
+    type: types.REQUEST_POSTS,
+    bkdata,
+    
+});

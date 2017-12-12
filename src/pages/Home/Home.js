@@ -34,6 +34,9 @@ export default class Home extends Component{
             this.setState({todoList: store.getState().addTodo.filter(data => data.completed === true)})
         } else this.setState({todoList: store.getState().addTodo})
     }
+    fetchDemo () {
+        store.dispatch()
+    }
     render(){
         store.subscribe(() =>{
             this.setState({
@@ -52,6 +55,10 @@ export default class Home extends Component{
                 <AddList save={this.saveTodo}></AddList>
                 {this.state.todoList.map((data) => <Todo delete={(e) => store.dispatch(DeleteTodo(data.id))} title={data.text} key={data.id} checked={data.completed} changeCheck={(e) => store.dispatch(CompleteTodo(data.id))}></Todo>)}
                 <Footer choose={(e) => this.chooseHandle(e)} deleteCompleted={e => store.dispatch(ClearCompletedTodo())} choosen={this.state.choosen}></Footer>
+                <hr/>
+                <div>
+                    <button onClick={this.fetchDemo}>fetch</button>
+                </div>
             </div>
         )
     }
